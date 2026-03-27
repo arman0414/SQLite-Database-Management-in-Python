@@ -77,12 +77,10 @@ def begin_transaction(database_name):
     print("Error: Database", database_name, "does not exist.")
     return False
 
-  # Check if the lock file exists
   if os.path.exists(database_name + "_lock"):
     print("Error: Database", database_name, "is locked!")
     return False
 
-  # Create the lock file
   open(database_name + "_lock", "w").close()
   print("Transaction starts.")
   return True
@@ -93,7 +91,6 @@ def commit_transaction(database_name):
     print("Error: Database", database_name, "does not exist.")
     return False
 
-  # Remove the lock file
   os.remove(database_name + "_lock")
   print("Transaction committed.")
 
@@ -103,7 +100,6 @@ def rollback_transaction(database_name):
     print("Error: Database", database_name, "does not exist.")
     return False
 
-  # Remove the lock file
   os.remove(database_name + "_lock")
   print("Transaction aborted.")
 
@@ -121,17 +117,14 @@ def select_data(database_name, table_name):
 
   table = database[database_name][table_name]
 
-  # Print table header
   columns = table["columns"]
   print("|".join(columns))
 
-  # Print table data
   for row_values, row_data in table["data"].items():
     values = [str(row_data[column]) for column in columns]
     print("|".join(values))
 
 
-# Test script
 create_database("CS457_PA4")
 use_database("CS457_PA4")
 create_table("CS457_PA4", "Flights", ["seat int", "status int"])
