@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+CS457_PA2/
+CS457_PA3/
+# Accidental dirs from old engine bug (SQL glued into folder name)
+CS457_PA3;*
+DemoDB/
+db_tpch.db
+data/*
+!data/.gitkeep
+.DS_Store
